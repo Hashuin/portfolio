@@ -24,10 +24,6 @@ const Navigation = () => {
         >
           <span className="nav-item">Proyectos</span>
         </li>
-        {/* Agrega los enlaces de contacto aquí */}
-        <li>
-          <a href="/contacto" className="nav-item">Contacto</a>
-        </li>
         <li>
           <a href="https://www.linkedin.com/in/jossyr-pinto/" className="nav-item" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </li>
