@@ -6,8 +6,6 @@ import ProjectsHomePage from '@/app/components/home/projects';
 import Navigation from '@/app/components/home/navigation';
 import AboutMe from '@/app/components/home/aboutme';
 import useHomeStore from '@/app/stores/homeStore';
-import Experience from '@/app/components/home/experience';
-import CursorLight from '@/app/components/home/cursor';
 
 const HomePage = () => {
   const selectedItem = useHomeStore((state) => state.selectedItem);
