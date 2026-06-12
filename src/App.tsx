@@ -4,12 +4,17 @@ import { Footer } from './components/layout/Footer';
 import { Hero } from './components/sections/Hero';
 import { About } from './components/sections/About';
 import { Experience } from './components/sections/Experience';
+import { Certifications } from './components/sections/Certifications';
 import { Projects } from './components/sections/Projects';
 import { Contact } from './components/sections/Contact';
+import { useLanguage } from './context/LanguageContext';
+import { copy } from './data/copy';
 
 function App() {
+  const { language } = useLanguage();
   const aboutRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
+  const certificationsRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
@@ -17,6 +22,7 @@ function App() {
     const sections = [
       aboutRef.current,
       experienceRef.current,
+      certificationsRef.current,
       projectsRef.current,
       contactRef.current
     ];
@@ -53,8 +59,8 @@ function App() {
 
   // Update document title
   useEffect(() => {
-    document.title = "Jossyr Pinto | Portfolio";
-  }, []);
+    document.title = copy[language].metaTitle;
+  }, [language]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -69,6 +75,10 @@ function App() {
 
         <div ref={experienceRef}>
           <Experience />
+        </div>
+
+        <div ref={certificationsRef}>
+          <Certifications />
         </div>
         
         <div ref={projectsRef}>

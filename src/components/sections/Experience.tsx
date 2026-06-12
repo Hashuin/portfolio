@@ -1,42 +1,55 @@
 import React from 'react';
 import { SectionHeading } from '../ui/SectionHeading';
 import { experienceData } from '../../data/experience';
+import { useLanguage } from '../../context/LanguageContext';
+import { copy } from '../../data/copy';
 
 export const Experience: React.FC = () => {
+  const { language } = useLanguage();
+  const text = copy[language].experience;
+
   return (
-    <section id="experience" className="py-24 bg-white dark:bg-gray-900">
+    <section id="experience" className="relative overflow-hidden py-24">
       <div className="container mx-auto px-4 md:px-6">
         <SectionHeading 
-          title="Professional Experience" 
-          subtitle="A glimpse into my professional journey and the skills I've developed along the way."
+          title={text.title} 
+          subtitle={text.subtitle}
         />
         
-        <div className="space-y-8">
+        <div className="space-y-6">
           {experienceData.map((experience, index) => (
             <div 
               key={index}
-              className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+              className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-sm backdrop-blur transition-shadow hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/75"
             >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  {experience.title}
-                </h3>
-                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1 md:mt-0">
+              <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-950 dark:text-white">
+                    {experience.title}
+                  </h3>
+                  <p className="mt-1 text-sm font-medium text-blue-600 dark:text-cyan-300">
+                    {experience.company} · {experience.location}
+                  </p>
+                </div>
+                <div className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300">
                   {experience.period}
                 </div>
               </div>
-              
-              <div className="mb-4">
-                <h4 className="text-lg font-medium text-blue-600 dark:text-blue-400">
-                  {experience.company}
-                </h4>
-              </div>
-              
-              <div className="flex flex-wrap gap-2 mt-4">
-                {experience.skills.map((skill, skillIndex) => (
+
+              <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                {experience.bullets[language].map((bullet) => (
+                  <li key={bullet} className="flex gap-3">
+                    <span className="mt-2 h-2 w-2 flex-none rounded-full bg-blue-600 dark:bg-cyan-300" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {experience.skills.map((skill) => (
                   <span 
-                    key={skillIndex}
-                    className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm font-medium"
+                    key={skill}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300"
                   >
                     {skill}
                   </span>

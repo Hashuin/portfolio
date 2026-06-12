@@ -13,15 +13,15 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
 }) => {
   return (
     <div className={`mb-12 ${centered ? 'text-center' : ''}`}>
-      <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white">
+      <h2 className="text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
+        <p className={`mt-4 text-base leading-7 text-slate-600 dark:text-slate-300 ${centered ? 'mx-auto max-w-2xl' : 'max-w-2xl'}`}>
           {subtitle}
         </p>
       )}
-      <div className={`w-20 h-1 bg-blue-600 mt-4 ${centered ? 'mx-auto' : ''}`}></div>
+      <div className={`mt-6 h-px w-24 bg-gradient-to-r from-transparent via-blue-600 to-transparent ${centered ? 'mx-auto' : ''}`} />
     </div>
   );
 };

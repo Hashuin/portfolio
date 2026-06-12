@@ -3,63 +3,67 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 import { SectionHeading } from '../ui/SectionHeading';
 import { socialLinks } from '../../data/social';
 import * as LucideIcons from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { copy } from '../../data/copy';
+
+type LucideIconComponent = React.ComponentType<{ className?: string }>;
 
 export const Contact: React.FC = () => {
+  const { language } = useLanguage();
+  const text = copy[language].contact;
+
   return (
-    <section id="contact" className="py-24 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="contact" className="relative overflow-hidden py-24">
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-100/70 to-transparent dark:from-slate-900/50 dark:to-transparent" />
+      <div className="container relative mx-auto px-4 md:px-6">
         <SectionHeading 
-          title="Get In Touch" 
-          subtitle="Have a project in mind or just want to chat? Feel free to reach out."
+          title={text.title} 
+          subtitle={text.subtitle}
           centered
         />
         
-        <div className="max-w-2xl mx-auto bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+        <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200/70 bg-white/80 p-8 shadow-[0_24px_80px_-36px_rgba(15,23,42,0.35)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/75">
           <div className="space-y-10">
-            <div className="text-center">
-              <h3 className="text-2xl font-semibold mb-8 text-gray-900 dark:text-white inline-block relative">
-                Contact Information
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-              </h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-center justify-start space-x-3 group">
-                  <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full transform group-hover:scale-110 transition-transform duration-300">
+            <div>
+              <h3 className="text-xl font-semibold text-slate-950 dark:text-white">{text.contactInfo}</h3>
+              <div className="mt-6 space-y-4">
+                <div className="flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-slate-50/70 p-4 dark:border-slate-800 dark:bg-slate-950/60">
+                  <div className="rounded-full bg-blue-100 p-3 dark:bg-blue-900/30">
                     <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <div className="text-left">
-                    <h4 className="text-base font-medium text-gray-800 dark:text-gray-200">Email</h4>
-                    <p className="text-gray-600 dark:text-gray-300">jossyrpin@gmail.com</p>
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">{text.email}</h4>
+                    <p className="text-base text-slate-700 dark:text-slate-200">jossyrpin@gmail.com</p>
                   </div>
                 </div>
-                
-                <div className="flex items-center justify-start space-x-3 group">
-                  <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full transform group-hover:scale-110 transition-transform duration-300">
+
+                <div className="flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-slate-50/70 p-4 dark:border-slate-800 dark:bg-slate-950/60">
+                  <div className="rounded-full bg-blue-100 p-3 dark:bg-blue-900/30">
                     <Phone className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <div className="text-left">
-                    <h4 className="text-base font-medium text-gray-800 dark:text-gray-200">Phone</h4>
-                    <p className="text-gray-600 dark:text-gray-300">+57 3244627633</p>
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">{text.phone}</h4>
+                    <p className="text-base text-slate-700 dark:text-slate-200">+57 3244627633</p>
                   </div>
                 </div>
-                
-                <div className="flex items-center justify-start space-x-3 group">
-                  <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full transform group-hover:scale-110 transition-transform duration-300">
+
+                <div className="flex items-center gap-4 rounded-2xl border border-slate-200/70 bg-slate-50/70 p-4 dark:border-slate-800 dark:bg-slate-950/60">
+                  <div className="rounded-full bg-blue-100 p-3 dark:bg-blue-900/30">
                     <MapPin className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <div className="text-left">
-                    <h4 className="text-base font-medium text-gray-800 dark:text-gray-200">Location</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Floridablanca, CO</p>
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">{text.location}</h4>
+                    <p className="text-base text-slate-700 dark:text-slate-200">Floridablanca, CO</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-6 text-gray-900 dark:text-white">Connect With Me</h3>
-              <div className="flex justify-center space-x-4">
+            <div>
+              <h3 className="text-xl font-semibold text-slate-950 dark:text-white">{text.connect}</h3>
+              <div className="mt-6 flex flex-wrap gap-4">
                 {socialLinks.map((social) => {
-                  const IconComponent = LucideIcons[social.icon as keyof typeof LucideIcons];
+                  const IconComponent = LucideIcons[social.icon as keyof typeof LucideIcons] as LucideIconComponent | undefined;
                   
                   return (
                     <a
@@ -67,10 +71,11 @@ export const Contact: React.FC = () => {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white dark:bg-gray-700 p-4 rounded-full text-gray-700 dark:text-gray-300 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-gray-600 dark:hover:text-blue-400 transform hover:scale-110 transition-all duration-300 shadow-md"
+                      className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-3 text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600 dark:border-slate-800 dark:bg-slate-950/70 dark:text-slate-300 dark:hover:border-cyan-400/40 dark:hover:text-cyan-300"
                       aria-label={social.platform}
                     >
-                      {IconComponent && <IconComponent className="h-6 w-6" />}
+                      {IconComponent ? <IconComponent className="h-6 w-6" /> : null}
+                      <span className="text-sm font-medium">{social.platform}</span>
                     </a>
                   );
                 })}
