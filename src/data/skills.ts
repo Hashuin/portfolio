@@ -16,6 +16,6 @@ export const skills: Skill[] = [
   { name: 'Figma', level: 4, category: 'design' },
   { name: 'Git', level: 4, category: 'other' },
   { name: 'MongoDB', level: 3, category: 'backend' },
-  { name: 'GraphQL', level: 2, category: 'other' },
+  { name: 'GraphQL', level: 4, category: 'other' },
   { name: 'Tailwind CSS', level: 3, category: 'frontend' },
 ];
